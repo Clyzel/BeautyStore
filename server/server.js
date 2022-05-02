@@ -13,22 +13,33 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const URL = "https://fakestoreapi.com/products/1";
+//const URL = "https://fakestoreapi.com/products/1";
 
 //creates an endpoint for the route /api
-app.get("/api", (req, res) => {
-    request(
-      URL,
-      function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-          res.send(body);
+// app.get("/api", (req, res) => {
+//     request(
+//       URL,
+//       function(error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//           res.send(body);
   
-        }
-      }
-    );
-  });
+//         }
+//       }
+//     );
+//   });
 
 // //create the get request
+
+app.get('/data', cors(), async (req, res) => {
+  try{
+      const { rows: products } = await db.query('SELECT * FROM products');
+      res.send(products);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
+
 // app.get('/api/students', cors(), async (req, res) => {
     
 //     // const STUDENTS = [
@@ -49,7 +60,20 @@ app.get("/api", (req, res) => {
 //     }
 // });
 
-// //create the POST request
+//create the POST request
+
+// app.post('/api/product', cors(), async (req, res) => {
+//   const newProducts = { id: req.body.id, category: req.body.category, image: req.body.image, title: req.body.title, description: req.body.description, price: req.body.price }
+//   console.log([newProducts.id, newProducts.category, newProducts.image, newProducts.title, newProducts.description, newProducts.price]);
+//   const result = await db.query(
+//       'INSERT INTO products(id, category, image, title, description, price) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+//       [newProducts.id, newProducts.category, newProducts.image, newProducts.title, newProducts.description, newProducts.price]
+//   );
+//   console.log(result.rows[0]);
+//   res.json(result.rows[0]);
+// });
+
+
 // app.post('/api/students', cors(), async (req, res) => {
 //     const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
 //     console.log([newUser.firstname, newUser.lastname]);

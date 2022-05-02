@@ -7,7 +7,7 @@ const IndividualItem = () => {
     const [products, setProducts] = useState([]);
 
 	const loadProducts = () => {
-        fetch("http://localhost:5000/api")
+        fetch("http://localhost:5000/data")
             .then((response) => response.json())
             .then(products => {
                 setProducts(products);
@@ -21,10 +21,16 @@ const IndividualItem = () => {
 return (
     <div>
 	<h1>Individual Item Here</h1>
-     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 20 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 20 }}>
 
     <div>Column 1
-    <img src={products.image} alt="Italian Trulli" width= "500" height= "600" />
+    <ul>
+		{products.map((product, index) => (
+			<li key={product.id}>
+            <img src={product.image} alt= "" width= "500" height= "600" />
+			</li>
+		))}                     
+    </ul>
         
 
     </div>
@@ -34,19 +40,28 @@ return (
         <div style={{display: "flex"}}>
         <hr></hr>
         <p>
-            <h1>Description</h1>
-            {products.description}
+            <h1>  Description</h1>
+            <ul>
+                {products.map((product, index) => (
+                <li key={product.id}>
+                {product.title}
+                <br/>
+                {product.description}
+                <br/>
+                {product.category}
+                </li>
+		        ))}                     
+            </ul>
+            
             <br/>
             <br/>
-            <form action="http://localhost:3000/shop">
-            <input type="submit" value="Back To Shop" />
-            </form>
-            <form action="http://localhost:3000/checkout">
-            <input type="submit" value="Buy Now" />
-            </form>
-            <form action="http://localhost:3000/checkout">
-            <input type="submit" value="Add Item" />
-            </form>
+           
+            <input type="button" value="Back To Shop"/>
+         
+            
+            <input type="button" value="Buy Now" />
+          
+    
             
         </p>
         

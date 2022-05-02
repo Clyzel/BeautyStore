@@ -5,10 +5,11 @@ const Home = () => {
 	const [products, setProducts] = useState([]);
 
 	const loadProducts = () => {
-        fetch("http://localhost:5000/api")
+        fetch("http://localhost:5000/data")
             .then((response) => response.json())
             .then(products => {
-                setProducts(products);
+                console.log(products);
+					setProducts(products);
             })
     }
 
@@ -17,23 +18,29 @@ const Home = () => {
     }, []);
 
 return (
+
+
+	
 	<div>
+
+    
+
 	<h1>Home</h1>
 
 	<h2> List of Items </h2>
 
+	{/* <p>{products}</p> */}
 	<ul>
-                
-					<li>
-					<form action="http://localhost:3000/individualitem">
-					<input type="image" src={products.image} alt="Submit" width="100" height="100">
-					</input>
+		{products.map((product, index) => (
+			<li key={product.id}>
+			<a href={`http://localhost:3000/individualitem?id=${product.id}`}><img src={product.image} width="100" height="100" ></img></a>
 					<br/>
-					{products.title}
+					{product.title}
 					<br/>
-					{products.category} 
-					</form></li>
-				
+					{product.category} 
+					</li>
+		)
+			)}
                         
                        
     </ul>
