@@ -39,6 +39,38 @@ app.get('/data', cors(), async (req, res) => {
   }
 });
 
+// app.get("/data/:id", async (req, res) => {
+//   try{
+//     //const product = { id: req.body.id
+//       const { rows: products } = await db.query('SELECT * FROM products');
+//       res.send(products);
+//   } catch (e){
+//       return res.status(400).json({e});
+//   }
+// });
+
+// app.get("/data/:id", async (req, res) => {
+//   try{
+//       const id = req.params.id;
+//       await db.query('SELECT * FROM products WHERE id=$1', [id]);
+//       res.send(products);
+//   } catch (e){
+//       return res.status(400).json({e});
+//   }
+// });
+
+app.get("/data/:id", async (req, res) => {
+  try {
+  const id = req.params.id;
+  const getId = await db.query(`SELECT * FROM products WHERE id=${id}`);
+  //console.log("getId", getId.rows);
+  res.send(getId.rows);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
+
 
 // app.get('/api/students', cors(), async (req, res) => {
     
