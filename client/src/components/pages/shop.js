@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-
+import IndividualItem from './individualitem';
 
 const Shop = () => {
 
@@ -24,8 +24,8 @@ const Shop = () => {
 	if (selected != null) {
 		displayBlock = (
 			<div> 
+			<IndividualItem product={selected} />
 			<button onClick={() => setSelected(null)}>Go back</button> 
-			<h1>{selected.title} </h1>
 			</div>
 			)
 	} else {
