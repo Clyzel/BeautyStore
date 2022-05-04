@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import IndividualItem from './individualitem';
 
+
 const Home = () => {
 	const [products, setProducts] = useState([]);
 	const [selected, setSelected] = useState(null);
@@ -29,6 +30,7 @@ const Home = () => {
 			<div> 
 			<button onClick={() => setSelected(null)}>Go back</button> 
 			<IndividualItem product={selected} />
+			
 			</div>
 			)
 	} else {
