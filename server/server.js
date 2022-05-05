@@ -39,6 +39,26 @@ app.get('/data', cors(), async (req, res) => {
   }
 });
 
+app.get('/favitems', cors(), async (req, res) => {
+  try{
+      const { rows: favitems } = await db.query('SELECT * FROM favitems');
+      res.send(favitems);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
+app.post('/favitems', cors(), async (req, res) => {
+  const newFav = { id: req.body.id }
+  console.log([newFav.id]);
+  const result = await db.query(
+      'INSERT INTO favitems(products_id) VALUES($1) RETURNING *',
+      [newFav.id]
+  );
+  console.log(result.rows[0]);
+  res.json(result.rows[0]);
+});
+
 // app.get("/data/:id", async (req, res) => {
 //   try{
 //     //const product = { id: req.body.id
@@ -59,16 +79,16 @@ app.get('/data', cors(), async (req, res) => {
 //   }
 // });
 
-app.get("/data/:id", async (req, res) => {
-  try {
-  const id = req.params.id;
-  const getId = await db.query(`SELECT * FROM products WHERE id=${id}`);
-  //console.log("getId", getId.rows);
-  res.send(getId.rows);
-  } catch (e){
-      return res.status(400).json({e});
-  }
-});
+// app.get("/data/:id", async (req, res) => {
+//   try {
+//   const id = req.params.id;
+//   const getId = await db.query(`SELECT * FROM products WHERE id=${id}`);
+//   //console.log("getId", getId.rows);
+//   res.send(getId.rows);
+//   } catch (e){
+//       return res.status(400).json({e});
+//   }
+// });
 
 
 

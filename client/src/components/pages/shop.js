@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import IndividualItem from './individualitem';
+import FavoriteItem from '../favorite';
 
 const Shop = () => {
 

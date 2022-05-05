@@ -28,9 +28,12 @@ const Home = () => {
 	if (selected != null) {
 		displayBlock = (
 			<div> 
-			<button onClick={() => setSelected(null)}>Go back</button> 
+			 
 			<IndividualItem product={selected} />
-			
+			<br/>
+			<br/>
+			<button onClick={() => setSelected(null)}>Go back</button>
+
 			</div>
 			)
 	} else {
