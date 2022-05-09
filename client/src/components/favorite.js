@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 */
 const FavoriteItem = (props) => {
  const {product} = props
- const [fav, setFav] = useState();
+ const [fav, setFav] = useState(null);
 
 
  const loadFavitem = () => {
@@ -56,18 +56,18 @@ const deleteFav = (favitems) => {
 
  let displayHearts;
  console.log(displayHearts);
- if (fav === undefined) {
+ if (fav !== null) {
      console.log("filled heart")
      displayHearts = (
          <div> 
-         <h1> <FaHeart style={{color: 'red'}} onClick={() => deleteFav(fav.id)}/> </h1>
+         <h1> <FaHeart style={{color: 'red'}} onClick={() => {setFav(null); deleteFav(fav.id);}}/> </h1> filled heart
          </div>
          )
  } else {
     console.log("empty heart")
      displayHearts = (
      <div>
-         <h1><FaRegHeart style={{color: 'red'}} onClick={() => postFavitem(product)}/> </h1> emptyheart
+         <h1> <FaRegHeart style={{color: 'red'}} onClick={() => {setFav(product); postFavitem(product);}}/> </h1> emptyheart
      </div>
      )
  };
