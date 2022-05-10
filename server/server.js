@@ -59,6 +59,14 @@ app.post('/favitems', cors(), async (req, res) => {
   res.json(result.rows[0]);
 });
 
+app.delete('/favitems', cors(), async (req, res) =>{
+  const deleteId = req.params.id;
+  //console.log(req.params);
+  await db.query('DELETE FROM favitems WHERE products_id=$1', [deleteId]);
+  res.status(200).end();
+
+ });
+
 // app.get("/data/:id", async (req, res) => {
 //   try{
 //     //const product = { id: req.body.id

@@ -28,7 +28,7 @@ const Home = () => {
 	if (selected != null) {
 		displayBlock = (
 			<div> 
-			 
+
 			<IndividualItem product={selected} />
 			<br/>
 			<br/>

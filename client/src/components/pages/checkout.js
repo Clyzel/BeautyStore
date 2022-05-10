@@ -3,19 +3,31 @@ import { useState, useEffect } from "react";
 
 const Checkout = () => {
 	const [products, setProducts] = useState([]);
+    const [fav, setFav] = useState();
 
 	const loadProducts = () => {
-        fetch("http://localhost:5000/api")
+        fetch("http://localhost:5000/data")
             .then((response) => response.json())
             .then(products => {
-                setProducts(products);
+                console.log(products);
+					setProducts(products);
             })
     }
 
+    const loadFavitems = () => {
+        // user.id and product.id
+       fetch("http://localhost:5000/favitems")
+           .then((response) => response.json())
+           .then(favitems => {
+               //console.log(favitem);
+                   setFav(favitems);
+           })
+   }
+
 	useEffect(() => {
         loadProducts();
+        loadFavitems();
     }, []);
-
 
 
 return (

@@ -17,7 +17,7 @@ const FavoriteItem = (props) => {
     fetch("http://localhost:5000/favitems")
         .then((response) => response.json())
         .then(favitem => {
-            console.log(favitem);
+            //console.log(favitem);
                 setFav(favitem);
         })
 }
@@ -54,20 +54,21 @@ const deleteFav = (favitems) => {
    
 
 
- let displayHearts;
- console.log(displayHearts);
+ let displayHeart;
+ //console.log(displayHearts);
  if (fav !== null) {
-     console.log("filled heart")
-     displayHearts = (
+     console.log("empty heart default")
+     displayHeart = (
          <div> 
-         <h1> <FaHeart style={{color: 'red'}} onClick={() => {setFav(null); deleteFav(fav.id);}}/> </h1> filled heart
+         <h1> <FaRegHeart style={{color: 'red'}}  onClick={() => {deleteFav(fav.id)}}/> </h1> empty heart
          </div>
          )
  } else {
-    console.log("empty heart")
-     displayHearts = (
+    console.log("filled heart")
+     displayHeart = (
      <div>
-         <h1> <FaRegHeart style={{color: 'red'}} onClick={() => {setFav(product); postFavitem(product);}}/> </h1> emptyheart
+         <h1> <FaHeart style={{color: 'red'}} onClick={() => {postFavitem(product); setFav(product)}}/> </h1> filled heart
+         
      </div>
      )
  };
@@ -82,7 +83,7 @@ return (
     
     
     <div>
-        {displayHearts}
+        {displayHeart}
     </div>
     
 

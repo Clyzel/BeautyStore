@@ -164,3 +164,23 @@
 // useEffect(() => {
 //     loadFavitems();
 // }, []);
+
+// app.delete('/favitems', cors(), async (req, res) =>{
+//     const deleteId = req.params.id;
+//     //console.log(req.params);
+//     await db.query('DELETE FROM favitems WHERE products_id=$1', [deleteId]);
+//     res.status(200).end();
+
+
+//     const newFav = { id: req.body.id }
+
+//     app.post('/favitems', cors(), async (req, res) => {
+//         const newFav = { id: req.body.id }
+//         console.log([newFav.id]);
+//         const result = await db.query(
+//             'INSERT INTO favitems(products_id) VALUES($1) RETURNING *',
+//             [newFav.id]
+//         );
+//         console.log(result.rows[0]);
+//         res.json(result.rows[0]);
+//       });
