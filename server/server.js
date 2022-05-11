@@ -48,6 +48,15 @@ app.get('/favitems', cors(), async (req, res) => {
   }
 });
 
+// app.get('/favitems/id', cors(), async (req, res) => {
+//   try{
+//       const { rows: favitems } = await db.query('SELECT id FROM favitems');
+//       res.send(favitems);
+//   } catch (e){
+//       return res.status(400).json({e});
+//   }
+// });
+
 app.post('/favitems', cors(), async (req, res) => {
   const newFav = { id: req.body.id }
   console.log([newFav.id]);
@@ -60,12 +69,27 @@ app.post('/favitems', cors(), async (req, res) => {
 });
 
 app.delete('/favitems', cors(), async (req, res) =>{
-  const deleteId = req.params.id;
-  //console.log(req.params);
-  await db.query('DELETE FROM favitems WHERE products_id=$1', [deleteId]);
+  const deleteId = req.body.id;
+  console.log(req.params);
+  await db.query('DELETE FROM favitems WHERE id=$1', [deleteId]);
   res.status(200).end();
 
  });
+
+
+//  app.delete('/favitems', cors(), async (req, res) => {
+//   //console.log("looking here", req);
+//   const deleteFavItem = { id: req.body.id }
+//   console.log("testing info ", [deleteFavItem.id]);
+
+//   const result = await db.query(
+//       'DELETE FROM favitems WHERE id=$1',
+//       [deleteFavItem.id]
+//   );
+  
+//   console.log(result.rows[0]);
+//   res.json(result.rows[0]);
+// });
 
 // app.get("/data/:id", async (req, res) => {
 //   try{

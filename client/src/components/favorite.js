@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 */
 const FavoriteItem = (props) => {
  const {product} = props
- const [fav, setFav] = useState(null);
+ const [fav, setFav] = useState();
 
 
  const loadFavitem = () => {
@@ -35,19 +35,24 @@ useEffect(() => {
   }).then((response) => {
       return response.json()
   }).then((data) => {
-    console.log("From the post ", data);
-     setFav(data);
+    console.log("A Post Was Made ", data);
+     //setFav(data);
+     loadFavitem();
   
 });
 }
 
-const deleteFav = (favitems) => {
-    return fetch(`'http://localhost:5000/favitems/${favitems.id}`, {
-        method: "DELETE"
-    }).then((response) =>{
+const deleteFav = (favitem) => { console.log(favitem);
+    return fetch('http://localhost:5000/favitems', {
+    method: "DELETE",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(favitem)
+ }).then((response) =>{
         //console.log(response);
         if(response.ok){
-            loadFavitem();
+            //setFav(null);
+        console.log("A Delete Was Made ", response);
+         loadFavitem();
         }
     })
 }
@@ -55,19 +60,20 @@ const deleteFav = (favitems) => {
 
 
  let displayHeart;
- //console.log(displayHearts);
- if (fav !== null) {
-     console.log("empty heart default")
+ let currentlyFav = fav ? fav.find( everyFav => everyFav.products_id === product.id) : null ;
+ console.log("This is fav",fav);
+  if (currentlyFav) {
+     console.log("filled heart default")
      displayHeart = (
          <div> 
-         <h1> <FaRegHeart style={{color: 'red'}}  onClick={() => {deleteFav(fav.id)}}/> </h1> empty heart
-         </div>
-         )
+         <h1> <FaHeart style={{color: 'red'}}  onClick={() => {deleteFav(currentlyFav)}}/> </h1> 
+         </div> 
+        ) 
  } else {
-    console.log("filled heart")
+    console.log("empty heart")
      displayHeart = (
      <div>
-         <h1> <FaHeart style={{color: 'red'}} onClick={() => {postFavitem(product); setFav(product)}}/> </h1> filled heart
+         <h1> <FaRegHeart style={{color: 'red'}} onClick={() => {postFavitem(product)}}/>  </h1> 
          
      </div>
      )

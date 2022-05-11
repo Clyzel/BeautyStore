@@ -184,3 +184,17 @@
 //         console.log(result.rows[0]);
 //         res.json(result.rows[0]);
 //       });
+
+// app.delete('/favitems', cors(), async (req, res) => {
+//     //console.log("looking here", req);
+//     const deleteFavItem = { id: req.body.id }
+//     console.log("testing info ", [deleteFavItem.id]);
+
+//     const result = await db.query(
+//         'DELETE FROM favitems WHERE id=$1',
+//         [deleteFavItem.id]
+//     );
+    
+//     console.log(result.rows[0]);
+//     res.json(result.rows[0]);
+// });

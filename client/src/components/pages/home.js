@@ -46,7 +46,9 @@ const Home = () => {
 				// onClick={loadProduct}
 				// <IndividualItem key={index} product={product}/>
 			))}                               
-		</ul> </div>
+		</ul> 
+		
+		</div>
 		)
 
 	}

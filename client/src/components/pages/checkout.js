@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 
 const Checkout = () => {
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState();
     const [fav, setFav] = useState();
 
 	const loadProducts = () => {
@@ -53,6 +53,17 @@ return (
 	<div style={{display: "flex"}}>
         <hr></hr>
 		<h1>Favorites</h1>
+        <ol>
+			{/* {favitems.map((favitem) => (
+                <li key={favitem.id}>
+
+
+                </li>
+				
+				
+				
+			))}                                */}
+		</ol> 
 	</div>
 	</div>
 	</div>
