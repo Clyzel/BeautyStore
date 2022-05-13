@@ -2,8 +2,10 @@ import React from 'react';
 import { useState, useEffect } from "react";
 
 const Checkout = () => {
-	const [products, setProducts] = useState();
-    const [fav, setFav] = useState();
+	const [products, setProducts] = useState([]);
+    const [favitems, setFavitems] = useState([]);
+    const [joinItems, setJoinItems] = useState([]);
+    const [addedItems, setAddedItems] = useState([]);
 
 	const loadProducts = () => {
         fetch("http://localhost:5000/data")
@@ -15,20 +17,60 @@ const Checkout = () => {
     }
 
     const loadFavitems = () => {
-        // user.id and product.id
        fetch("http://localhost:5000/favitems")
            .then((response) => response.json())
            .then(favitems => {
                //console.log(favitem);
-                   setFav(favitems);
+                   setFavitems(favitems);
            })
    }
+
+   const loadFavJoinItems = () => {
+   fetch("http://localhost:5000/favejointable")
+       .then((response) => response.json())
+       .then(joinItems => {
+           //console.log(joinItems);
+               setJoinItems(joinItems);
+       })
+    }
+
+    const loadAddedJoinItems = () => {
+        fetch("http://localhost:5000/addedjointable")
+            .then((response) => response.json())
+            .then(addedItems => {
+                //console.log(joinItems);
+                    setAddedItems(addedItems);
+            })
+         }
 
 	useEffect(() => {
         loadProducts();
         loadFavitems();
+        loadFavJoinItems();
+        loadAddedJoinItems();
     }, []);
 
+    let displayFav = (
+    <ol>
+    {joinItems.map((item, index) => (
+        <li key={index}>
+            <h2>{item.title}</h2>
+        </li>
+        
+    ))}                               
+    </ol> );
+
+let displayAddedItemName = (
+    <ol>
+    {addedItems.map((item, index) => (
+        <li key={index}>
+           <h2>{item.title} || ${item.price}</h2>
+        </li>
+        
+    ))}                               
+    </ol> );
+
+    // let subtotal = (parseInt({item.price}));
 
 return (
 	<div>
@@ -40,9 +82,8 @@ return (
 	<div> 
 		<h1>Items</h1>
 		<p>
-			Name:
+			{displayAddedItemName}
 			<br/>
-			Quantity:
 		</p>
 {/* lower left of this column 1 */}
 		<hr></hr>
@@ -53,17 +94,7 @@ return (
 	<div style={{display: "flex"}}>
         <hr></hr>
 		<h1>Favorites</h1>
-        <ol>
-			{/* {favitems.map((favitem) => (
-                <li key={favitem.id}>
-
-
-                </li>
-				
-				
-				
-			))}                                */}
-		</ol> 
+        {displayFav}
 	</div>
 	</div>
 	</div>
@@ -75,7 +106,7 @@ return (
         <hr></hr>
         <p>
             <h1>Subtotal</h1>
-            {products.price}
+           
             <br/>
 			<h2>Shipping</h2>
             free

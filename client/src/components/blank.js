@@ -115,22 +115,22 @@
 //   });
 
 // app.post('/favitems', cors(), async (req, res) => {
-//     const newFav = { products_id: req.body.products_id }
-//     console.log([newFav.products_id]);
+//     const newAddItem = { products_id: req.body.products_id }
+//     console.log([newAddItem.products_id]);
 //     const result = await db.query(
 //         'INSERT INTO favitems(products_id) VALUES($1) RETURNING *',
-//         [newFav.products_id]
+//         [newAddItem.products_id]
 //     );
 //     console.log(result.rows[0]);
 //     res.json(result.rows[0]);
 // });
 
 
-// const postFavitem = (newFavitem) => {
+// const postFavitem = (newAddItemitem) => {
 //     return fetch('http://localhost:5000/favitems', {
 //     method: 'POST',
 //     headers: {'Content-Type': 'application/json'}, 
-//     body: JSON.stringify(newFavitem)
+//     body: JSON.stringify(newAddItemitem)
 //   }).then((response) => {
 //       return response.json()
 //   }).then((data) => {
@@ -172,14 +172,14 @@
 //     res.status(200).end();
 
 
-//     const newFav = { id: req.body.id }
+//     const newAddItem = { id: req.body.id }
 
 //     app.post('/favitems', cors(), async (req, res) => {
-//         const newFav = { id: req.body.id }
-//         console.log([newFav.id]);
+//         const newAddItem = { id: req.body.id }
+//         console.log([newAddItem.id]);
 //         const result = await db.query(
 //             'INSERT INTO favitems(products_id) VALUES($1) RETURNING *',
-//             [newFav.id]
+//             [newAddItem.id]
 //         );
 //         console.log(result.rows[0]);
 //         res.json(result.rows[0]);
@@ -198,3 +198,59 @@
 //     console.log(result.rows[0]);
 //     res.json(result.rows[0]);
 // });
+
+// app.get('/jointable', cors(), async (req, res) => {
+//     try{
+//         const { rows: joinItems } = await db.query('SELECT title, price FROM products JOIN favitems ON products.id = favitems.products_id;');
+//         res.send(joinItems);
+//     } catch (e){
+//         return res.status(400).json({e});
+//     }
+//   });
+
+//   const loadJoinItems = () => {
+//     // user.id and product.id
+//    fetch("http://localhost:5000/jointable")
+//        .then((response) => response.json())
+//        .then(joinItems => {
+//            //console.log(joinItems);
+//                setFavitems(joinItems);
+//        })
+// }
+
+// app.post('/additems', cors(), async (req, res) => {
+//     const newAddItem = { id: req.body.id }
+//     console.log([newAddItem.id]);
+//     const result = await db.query(
+//         'INSERT INTO additems(product_id) VALUES($1) RETURNING *',
+//         [newAddItem.id]
+//     );
+//     console.log(result.rows[0]);
+//     res.json(result.rows[0]);
+//   });
+
+//   app.delete('/additems', cors(), async (req, res) =>{
+//     const deleteId = req.body.id;
+//     console.log(req.params);
+//     await db.query('DELETE FROM additems WHERE id=$1', [deleteId]);
+//     res.status(200).end();
+  
+//    });
+
+//    app.get('/additems', cors(), async (req, res) => {
+//     try{
+//         const { rows: additems } = await db.query('SELECT * FROM addtems');
+//         res.send(additems);
+//     } catch (e){
+//         return res.status(400).json({e});
+//     }
+//   });
+
+const loadAddItems = () => {
+    fetch("http://localhost:5000/additems")
+        .then((response) => response.json())
+        .then(additems => {
+            //console.log(additems);
+                setAddItems(additems);
+        })
+    }

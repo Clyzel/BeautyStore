@@ -61,20 +61,19 @@ const deleteFav = (favitem) => { console.log(favitem);
 
  let displayHeart;
  let currentlyFav = fav ? fav.find( everyFav => everyFav.products_id === product.id) : null ;
- console.log("This is fav",fav);
+ //console.log("This is fav",fav);
   if (currentlyFav) {
-     console.log("filled heart default")
+     console.log("Favorited")
      displayHeart = (
          <div> 
-         <h1> <FaHeart style={{color: 'red'}}  onClick={() => {deleteFav(currentlyFav)}}/> </h1> 
+          <FaHeart style={{color: 'red'}}  onClick={() => {deleteFav(currentlyFav)}}/> 
          </div> 
         ) 
  } else {
-    console.log("empty heart")
+    console.log("Has not Been Favorited")
      displayHeart = (
      <div>
-         <h1> <FaRegHeart style={{color: 'red'}} onClick={() => {postFavitem(product)}}/>  </h1> 
-         
+         <FaRegHeart style={{color: 'red'}} onClick={() => {postFavitem(product)}}/>
      </div>
      )
  };

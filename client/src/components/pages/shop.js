@@ -34,7 +34,7 @@ const Shop = () => {
 		<ul>
 			{products.map((product, index) => (
 				
-				<img key={index} src={product.image} alt= "" width= "500" height= "600" onClick={() => setSelected(product)}/>
+				<img key={index} src={product.image} alt= "" width= "300" height= "400" onClick={() => setSelected(product)}/>
 				
 				// onClick={loadProduct}
 				// <IndividualItem key={index} product={product}/>

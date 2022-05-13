@@ -24,6 +24,22 @@ const Home = () => {
 //if an item (product.id) is clicked-on, then display only that item (product.id)
 // this function would go into an onClick within the <a><img> tag to happen when picture is clicked on.
 
+	products.splice(3,17);
+
+	let displayThree;
+		displayThree = (
+		<div>
+		<h2> List of Items </h2>
+		<ul>
+			{products.map((product, index) => (
+				
+				<img key={index} src={product.image} alt= "" width= "300" height= "400" onClick={() => setSelected(product)}/>
+				
+			))}                               
+		</ul> 
+		</div>
+		);
+
 	let displayBlock;
 	if (selected != null) {
 		displayBlock = (
@@ -37,19 +53,7 @@ const Home = () => {
 			</div>
 			)
 	} else {
-		displayBlock = (<div><h2> List of Items </h2>
-		<ul>
-			{products.map((product, index) => (
-				
-				<img key={index} src={product.image} alt= "" width= "500" height= "600" onClick={() => setSelected(product)}/>
-				
-				// onClick={loadProduct}
-				// <IndividualItem key={index} product={product}/>
-			))}                               
-		</ul> 
-		
-		</div>
-		)
+		displayBlock = displayThree;
 
 	}
 	
