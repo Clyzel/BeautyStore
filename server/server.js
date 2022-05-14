@@ -57,6 +57,15 @@ app.get('/additems', cors(), async (req, res) => {
   }
 });
 
+app.get('/maxitems', cors(), async (req, res) => {
+  try{
+      const { rows: additems } = await db.query('SELECT MAX (id) FROM additems;');
+      res.send(additems);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
 app.get('/favejointable', cors(), async (req, res) => {
   try{
       const { rows: joinItems } = await db.query('SELECT title, price FROM products JOIN favitems ON products.id = favitems.products_id;');

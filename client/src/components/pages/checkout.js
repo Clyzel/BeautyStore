@@ -2,28 +2,12 @@ import React from 'react';
 import { useState, useEffect } from "react";
 
 const Checkout = () => {
-	const [products, setProducts] = useState([]);
-    const [favitems, setFavitems] = useState([]);
+
     const [joinItems, setJoinItems] = useState([]);
-    const [addedItems, setAddedItems] = useState([]);
+    const [addedJoinItems, setAddedJoinItems] = useState([]);
+    const [maxItems, setMaxItems] = useState([]);
+    const [selected, setSelected] = useState(null);
 
-	const loadProducts = () => {
-        fetch("http://localhost:5000/data")
-            .then((response) => response.json())
-            .then(products => {
-                console.log(products);
-					setProducts(products);
-            })
-    }
-
-    const loadFavitems = () => {
-       fetch("http://localhost:5000/favitems")
-           .then((response) => response.json())
-           .then(favitems => {
-               //console.log(favitem);
-                   setFavitems(favitems);
-           })
-   }
 
    const loadFavJoinItems = () => {
    fetch("http://localhost:5000/favejointable")
@@ -37,40 +21,74 @@ const Checkout = () => {
     const loadAddedJoinItems = () => {
         fetch("http://localhost:5000/addedjointable")
             .then((response) => response.json())
-            .then(addedItems => {
+            .then(addedJoinItems => {
                 //console.log(joinItems);
-                    setAddedItems(addedItems);
+                    setAddedJoinItems(addedJoinItems);
             })
          }
 
+    const loadMaxAddItems = () => {
+        fetch("http://localhost:5000/maxitems")
+            .then((response) => response.json())
+            .then(maxitems => {
+                //console.log(additems);
+                    setMaxItems(maxitems);
+            })
+        }
+
+
 	useEffect(() => {
-        loadProducts();
-        loadFavitems();
+        loadMaxAddItems();
         loadFavJoinItems();
         loadAddedJoinItems();
     }, []);
 
+    
     let displayFav = (
     <ol>
     {joinItems.map((item, index) => (
         <li key={index}>
             <h2>{item.title}</h2>
         </li>
-        
     ))}                               
     </ol> );
 
-let displayAddedItemName = (
+    let displayAddedItemName = (
     <ol>
-    {addedItems.map((item, index) => (
+    {addedJoinItems.map((item, index) => (
         <li key={index}>
            <h2>{item.title} || ${item.price}</h2>
         </li>
-        
     ))}                               
     </ol> );
 
-    // let subtotal = (parseInt({item.price}));
+    
+    let subtotal = (
+        maxItems.map((number) => (
+          number.max * 100
+        )));
+
+                         
+
+    // let displayThankYou;
+	// if (selected != null) {
+	// 	displayThankyou = (
+	// 		<div> 
+
+	// 		<h1>Thank you!!</h1>
+	// 		<br/>
+	// 		<br/>
+	// 		<button onClick={() => setSelected(null)}>Go back</button>
+
+	// 		</div>
+	// 		)
+	// } else {
+	// 	displayThankyou = (
+            
+    //     )
+	// }
+
+
 
 return (
 	<div>
@@ -88,6 +106,21 @@ return (
 {/* lower left of this column 1 */}
 		<hr></hr>
 		<h1>Payment</h1>
+        <form onsubmit="submit_form()">  
+        <h4> First Name 
+        <input type="text" placeholder=""/>  
+         Last Name 
+        <input type="text" placeholder=""/> 
+         Address 
+        <input type="text" placeholder=""/>
+        Zip
+        <input type="text" placeholder=""/>
+        City
+        <input type="text" placeholder=""/>
+        State </h4>
+        <input type="text" placeholder=""/>
+        <input type="submit" value="Submit"/>   
+        </form>  
 	</div>
 {/* upper right side of this coulmn 1 */}
 	<div>
@@ -106,6 +139,7 @@ return (
         <hr></hr>
         <p>
             <h1>Subtotal</h1>
+            ${subtotal}.00
            
             <br/>
 			<h2>Shipping</h2>

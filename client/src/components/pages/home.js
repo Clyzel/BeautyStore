@@ -29,7 +29,7 @@ const Home = () => {
 	let displayThree;
 		displayThree = (
 		<div>
-		<h2> List of Items </h2>
+		<h2> Featured </h2>
 		<ul>
 			{products.map((product, index) => (
 				

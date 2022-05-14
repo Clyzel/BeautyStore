@@ -246,11 +246,11 @@
 //     }
 //   });
 
-const loadAddItems = () => {
-    fetch("http://localhost:5000/additems")
-        .then((response) => response.json())
-        .then(additems => {
-            //console.log(additems);
-                setAddItems(additems);
-        })
-    }
+// const loadAddItems = () => {
+//     fetch("http://localhost:5000/additems")
+//         .then((response) => response.json())
+//         .then(additems => {
+//             //console.log(additems);
+//                 setAddItems(additems);
+//         })
+//     }
