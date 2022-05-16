@@ -35,7 +35,7 @@ const IndividualItem = (props) => {
     });
     }
 
-    const deleteAddedItem = (additem) => { console.log(additem);
+    const deleteAddedItem = (additem) => { 
         return fetch('http://localhost:5000/additems', {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'},

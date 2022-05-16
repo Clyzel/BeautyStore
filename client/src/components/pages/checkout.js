@@ -43,6 +43,22 @@ const Checkout = () => {
         loadAddedJoinItems();
     }, []);
 
+
+    // const deleteAddedItem = (joinItem) => { 
+    //     return fetch('http://localhost:5000/addedjointable', {
+    //     method: "DELETE",
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify(joinItem)
+    //  }).then((response) =>{
+    //         console.log("THE RESPONSE IS HERE",response);
+    //         if(response.ok){
+    //             //setaddItems(null);
+    //         console.log("A Delete Was Made ", response);
+    //          loadAddedJoinItems();
+    //         }
+    //     })
+    // }
+
     
     let displayFav = (
     <ol>
@@ -57,7 +73,7 @@ const Checkout = () => {
     <ol>
     {addedJoinItems.map((item, index) => (
         <li key={index}>
-           <h2>{item.title} || ${item.price}</h2>
+           <h2>{item.title} || ${item.price} </h2>
         </li>
     ))}                               
     </ol> );

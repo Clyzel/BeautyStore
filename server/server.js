@@ -68,7 +68,7 @@ app.get('/maxitems', cors(), async (req, res) => {
 
 app.get('/favejointable', cors(), async (req, res) => {
   try{
-      const { rows: joinItems } = await db.query('SELECT title, price FROM products JOIN favitems ON products.id = favitems.products_id;');
+      const { rows: joinItems } = await db.query('SELECT products.id, title, price FROM products JOIN favitems ON products.id = favitems.products_id;');
       res.send(joinItems);
   } catch (e){
       return res.status(400).json({e});
@@ -77,22 +77,42 @@ app.get('/favejointable', cors(), async (req, res) => {
 
 app.get('/addedjointable', cors(), async (req, res) => {
   try{
-      const { rows: addedItems } = await db.query('SELECT title, price FROM products JOIN additems ON products.id = additems.product_id;');
+      const { rows: addedItems } = await db.query('SELECT products.id, title, price FROM products JOIN additems ON products.id = additems.product_id;');
       res.send(addedItems);
   } catch (e){
       return res.status(400).json({e});
   }
 });
 
+//categorys on shop.js
 
-// app.get('/favitems/id', cors(), async (req, res) => {
-//   try{
-//       const { rows: favitems } = await db.query('SELECT id FROM favitems');
-//       res.send(favitems);
-//   } catch (e){
-//       return res.status(400).json({e});
-//   }
-// });
+app.get('/categoryWomensClothing', cors(), async (req, res) => {
+  try{
+      const { rows: womensClothing } = await db.query("SELECT * FROM products WHERE category = 'womens clothing';");
+      res.send(womensClothing);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
+app.get('/categoryJewelry', cors(), async (req, res) => {
+  try{
+      const { rows: jewelryItems } = await db.query("SELECT * FROM products WHERE category = 'jewelry';");
+      res.send(jewelryItems);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
+app.get('/categoryBags', cors(), async (req, res) => {
+  try{
+      const { rows: bagItems } = await db.query("SELECT * FROM products WHERE category = 'bags';");
+      res.send(bagItems);
+  } catch (e){
+      return res.status(400).json({e});
+  }
+});
+
 
 app.post('/favitems', cors(), async (req, res) => {
   const newFav = { id: req.body.id }
@@ -131,6 +151,14 @@ app.delete('/favitems', cors(), async (req, res) =>{
   res.status(200).end();
 
  });
+
+//  app.delete('/addedjointable', cors(), async (req, res) =>{
+//   const deleteTitle = req.body.title;
+//   console.log(req.params);
+//   await db.query('DELETE FROM additems WHERE title=$1', [deleteTitle]);
+//   res.status(200).end();
+
+//  });
 
 //  app.delete('/favitems', cors(), async (req, res) => {
 //   //console.log("looking here", req);
