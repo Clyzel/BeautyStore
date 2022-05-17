@@ -1,11 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-require('dotenv').config()
-const db = require('../server/db/db-connection.js'); 
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+require("dotenv").config();
+const db = require("../server/db/db-connection.js");
 //const { request } = require('http');
-var request = require('request');
-const REACT_BUILD_DIR = path.join(__dirname, '..', 'client', 'build');
+var request = require("request");
+const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "build");
 const app = express();
 app.use(express.static(REACT_BUILD_DIR));
 
@@ -22,7 +22,7 @@ app.use(express.json());
 //       function(error, response, body) {
 //         if (!error && response.statusCode == 200) {
 //           res.send(body);
-  
+
 //         }
 //       }
 //     );
@@ -30,127 +30,134 @@ app.use(express.json());
 
 // //create the get request
 
-app.get('/data', cors(), async (req, res) => {
-  try{
-      const { rows: products } = await db.query('SELECT * FROM products');
-      res.send(products);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/data", cors(), async (req, res) => {
+  try {
+    const { rows: products } = await db.query("SELECT * FROM products");
+    res.send(products);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/favitems', cors(), async (req, res) => {
-  try{
-      const { rows: favitems } = await db.query('SELECT * FROM favitems');
-      res.send(favitems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/favitems", cors(), async (req, res) => {
+  try {
+    const { rows: favitems } = await db.query("SELECT * FROM favitems");
+    res.send(favitems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/additems', cors(), async (req, res) => {
-  try{
-      const { rows: additems } = await db.query('SELECT * FROM additems');
-      res.send(additems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/additems", cors(), async (req, res) => {
+  try {
+    const { rows: additems } = await db.query("SELECT * FROM additems");
+    res.send(additems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/maxitems', cors(), async (req, res) => {
-  try{
-      const { rows: additems } = await db.query('SELECT MAX (id) FROM additems;');
-      res.send(additems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/maxitems", cors(), async (req, res) => {
+  try {
+    const { rows: additems } = await db.query("SELECT MAX (id) FROM additems;");
+    res.send(additems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/favejointable', cors(), async (req, res) => {
-  try{
-      const { rows: joinItems } = await db.query('SELECT products.id, title, price FROM products JOIN favitems ON products.id = favitems.products_id;');
-      res.send(joinItems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/favejointable", cors(), async (req, res) => {
+  try {
+    const { rows: joinItems } = await db.query(
+      "SELECT products.id, title, price FROM products JOIN favitems ON products.id = favitems.products_id;"
+    );
+    res.send(joinItems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/addedjointable', cors(), async (req, res) => {
-  try{
-      const { rows: addedItems } = await db.query('SELECT products.id, title, price FROM products JOIN additems ON products.id = additems.product_id;');
-      res.send(addedItems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/addedjointable", cors(), async (req, res) => {
+  try {
+    const { rows: addedItems } = await db.query(
+      "SELECT products.id, title, price FROM products JOIN additems ON products.id = additems.product_id;"
+    );
+    res.send(addedItems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
 //categorys on shop.js
 
-app.get('/categoryWomensClothing', cors(), async (req, res) => {
-  try{
-      const { rows: womensClothing } = await db.query("SELECT * FROM products WHERE category = 'womens clothing';");
-      res.send(womensClothing);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/categoryWomensClothing", cors(), async (req, res) => {
+  try {
+    const { rows: womensClothing } = await db.query(
+      "SELECT * FROM products WHERE category = 'womens clothing';"
+    );
+    res.send(womensClothing);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/categoryJewelry', cors(), async (req, res) => {
-  try{
-      const { rows: jewelryItems } = await db.query("SELECT * FROM products WHERE category = 'jewelry';");
-      res.send(jewelryItems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/categoryJewelry", cors(), async (req, res) => {
+  try {
+    const { rows: jewelryItems } = await db.query(
+      "SELECT * FROM products WHERE category = 'jewelry';"
+    );
+    res.send(jewelryItems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-app.get('/categoryBags', cors(), async (req, res) => {
-  try{
-      const { rows: bagItems } = await db.query("SELECT * FROM products WHERE category = 'bags';");
-      res.send(bagItems);
-  } catch (e){
-      return res.status(400).json({e});
+app.get("/categoryBags", cors(), async (req, res) => {
+  try {
+    const { rows: bagItems } = await db.query(
+      "SELECT * FROM products WHERE category = 'bags';"
+    );
+    res.send(bagItems);
+  } catch (e) {
+    return res.status(400).json({ e });
   }
 });
 
-
-app.post('/favitems', cors(), async (req, res) => {
-  const newFav = { id: req.body.id }
+app.post("/favitems", cors(), async (req, res) => {
+  const newFav = { id: req.body.id };
   console.log([newFav.id]);
   const result = await db.query(
-      'INSERT INTO favitems(products_id) VALUES($1) RETURNING *',
-      [newFav.id]
+    "INSERT INTO favitems(products_id) VALUES($1) RETURNING *",
+    [newFav.id]
   );
   console.log(result.rows[0]);
   res.json(result.rows[0]);
 });
 
-app.post('/additems', cors(), async (req, res) => {
-  const newAddItem = { id: req.body.id }
+app.post("/additems", cors(), async (req, res) => {
+  const newAddItem = { id: req.body.id };
   console.log([newAddItem.id]);
   const result = await db.query(
-      'INSERT INTO additems(product_id) VALUES($1) RETURNING *',
-      [newAddItem.id]
+    "INSERT INTO additems(product_id) VALUES($1) RETURNING *",
+    [newAddItem.id]
   );
   console.log(result.rows[0]);
   res.json(result.rows[0]);
 });
 
-app.delete('/favitems', cors(), async (req, res) =>{
+app.delete("/favitems", cors(), async (req, res) => {
   const deleteId = req.body.id;
   console.log(req.params);
-  await db.query('DELETE FROM favitems WHERE id=$1', [deleteId]);
+  await db.query("DELETE FROM favitems WHERE id=$1", [deleteId]);
   res.status(200).end();
+});
 
- });
-
- app.delete('/additems', cors(), async (req, res) =>{
+app.delete("/additems", cors(), async (req, res) => {
   const deleteId = req.body.id;
   console.log(req.params);
-  await db.query('DELETE FROM additems WHERE id=$1', [deleteId]);
+  await db.query("DELETE FROM additems WHERE id=$1", [deleteId]);
   res.status(200).end();
-
- });
+});
 
 //  app.delete('/addedjointable', cors(), async (req, res) =>{
 //   const deleteTitle = req.body.title;
@@ -169,7 +176,7 @@ app.delete('/favitems', cors(), async (req, res) =>{
 //       'DELETE FROM favitems WHERE id=$1',
 //       [deleteFavItem.id]
 //   );
-  
+
 //   console.log(result.rows[0]);
 //   res.json(result.rows[0]);
 // });
@@ -205,10 +212,8 @@ app.delete('/favitems', cors(), async (req, res) =>{
 //   }
 // });
 
-
-
 // app.get('/api/students', cors(), async (req, res) => {
-    
+
 //     // const STUDENTS = [
 
 //     //     { id: 1, firstName: 'Lisa', lastName: 'Lee' },
@@ -239,7 +244,6 @@ app.delete('/favitems', cors(), async (req, res) =>{
 //   console.log(result.rows[0]);
 //   res.json(result.rows[0]);
 // });
-
 
 // app.post('/api/students', cors(), async (req, res) => {
 //     const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
@@ -284,5 +288,5 @@ app.delete('/favitems', cors(), async (req, res) =>{
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+  console.log(`Server listening on ${PORT}`);
 });
