@@ -57,6 +57,9 @@ app.get("/additems", cors(), async (req, res) => {
   }
 });
 
+
+//this if for the checkout page
+
 app.get("/maxitems", cors(), async (req, res) => {
   try {
     const { rows: additems } = await db.query("SELECT MAX (id) FROM additems;");
@@ -69,7 +72,7 @@ app.get("/maxitems", cors(), async (req, res) => {
 app.get("/favejointable", cors(), async (req, res) => {
   try {
     const { rows: joinItems } = await db.query(
-      "SELECT products.id, title, price FROM products JOIN favitems ON products.id = favitems.products_id;"
+      "SELECT products_id, title, price FROM products JOIN favitems ON products.id = favitems.products_id;"
     );
     res.send(joinItems);
   } catch (e) {
@@ -80,7 +83,7 @@ app.get("/favejointable", cors(), async (req, res) => {
 app.get("/addedjointable", cors(), async (req, res) => {
   try {
     const { rows: addedItems } = await db.query(
-      "SELECT products.id, title, price FROM products JOIN additems ON products.id = additems.product_id;"
+      "SELECT product_id, title, price FROM products JOIN additems ON products.id = additems.product_id;"
     );
     res.send(addedItems);
   } catch (e) {
@@ -154,18 +157,18 @@ app.delete("/favitems", cors(), async (req, res) => {
 
 app.delete("/additems", cors(), async (req, res) => {
   const deleteId = req.body.id;
-  console.log(req.params);
+  console.log(req.body);
   await db.query("DELETE FROM additems WHERE id=$1", [deleteId]);
   res.status(200).end();
 });
 
-//  app.delete('/addedjointable', cors(), async (req, res) =>{
-//   const deleteTitle = req.body.title;
-//   console.log(req.params);
-//   await db.query('DELETE FROM additems WHERE title=$1', [deleteTitle]);
-//   res.status(200).end();
+ app.delete('/addedjointable', cors(), async (req, res) =>{
+  const deleteId = req.body.product_id;
+  console.log(req.body);
+  await db.query('DELETE FROM additems WHERE id=$1', [deleteId]);
+  res.status(200).end();
 
-//  });
+ });
 
 //  app.delete('/favitems', cors(), async (req, res) => {
 //   //console.log("looking here", req);

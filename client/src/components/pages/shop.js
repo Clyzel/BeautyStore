@@ -8,7 +8,7 @@ import IndividualItem from "./individualitem";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [isChecked, setIsChecked] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const clothesId = useRef();
   const jewelryId = useRef();
@@ -58,10 +58,6 @@ const Shop = () => {
 
   // This is my guess of how to do an if else with the radio buttons
   let displayBlock;
-  //console.log("This is what ur looking for", selected);
-  console.log("This is an ID",clothesId);
-//   console.log("This is an ID",jewelryId);
-//   console.log("This is an ID",bagsId);
   if (selected != null) {
     displayBlock = (
       <div>
@@ -69,20 +65,19 @@ const Shop = () => {
         <button onClick={() => setSelected(null)}>Go back</button>
       </div>
     ); 
-  } else if (clothesId.current != null && clothesId.current.checked === true) {
-    console.log("It Reached this block", clothesId);
-	<ClothingItems />; 
-	console.log("After Clothes", <ClothingItems/>);
-//   } else if (jewelryId.current === null && jew isChecked) {
-//     <JewelryItems product={selected} />;
-//   } else if (bagsId.current === isChecked) {
-//     <BagItems product={selected} />;
   } else {
     displayBlock = (
       <div>
         <h2> List of Items </h2>
         <ul>
-          {products.map((product, index) => (
+          {products.filter((product) => {
+			  if (selectedCategory === "all"){
+				  return true;
+			  } else{
+				  return product.category === selectedCategory
+			  }
+
+		  }).map((product, index) => (
             <img
               key={index}
               src={product.image}
@@ -101,34 +96,52 @@ const Shop = () => {
 // 	console.log("This is working!")
 // };
 
-
+let handleCategoryChange = (changeEvent) => {
+	setSelectedCategory(changeEvent.target.value);
+  }
 
   return (
     // Bellow are my radio buttons
     <div>
       <div className="myDivContainer">
         <div className="column">
+		<form>
+			womens clothing
           <input
             ref={clothesId}
-            onChange={() => setIsChecked(!isChecked)}
-            aria-checked={isChecked}
+            onChange={handleCategoryChange}
+            aria-checked=""
             type="radio"
-            value="Women's Clothing"
+            value="womens clothing"
+			checked={selectedCategory === 'womens clothing'}
           />
+		  jewelry
           <input
             ref={jewelryId}
-            onChange={() => setIsChecked(!isChecked)}
-            aria-checked={isChecked}
+            onChange={handleCategoryChange}
+            aria-checked=""
             type="radio"
-            value="Jewelry"
+            value="jewelry"
+			checked={selectedCategory === 'jewelry'}
           />
+		  bags
           <input
             ref={bagsId}
-            onChange={() => setIsChecked(!isChecked)}
-            aria-checked={isChecked}
+            onChange={handleCategoryChange}
+            aria-checked=""
             type="radio"
-            value="Bags"
+            value="bags"
+			checked={selectedCategory === 'bags'}
           />
+		  all
+		  <input
+            onChange={handleCategoryChange}
+            aria-checked=""
+            type="radio"
+            value="all"
+			checked={selectedCategory === 'all'}
+          />
+		</form>
         </div>
 
         <div className="column">

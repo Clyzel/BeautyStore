@@ -1,11 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Checkout = () => {
+const CheckoutDefault = () => {
   const [joinItems, setJoinItems] = useState([]);
   const [addedJoinItems, setAddedJoinItems] = useState([]);
   const [maxItems, setMaxItems] = useState([]);
-  const [selected, setSelected] = useState(null);
 
   const loadFavJoinItems = () => {
     fetch("http://localhost:5000/favejointable")
@@ -40,20 +39,20 @@ const Checkout = () => {
     loadAddedJoinItems();
   }, []);
 
-  // const deleteAddedItem = (joinItem) => {
-  //     return fetch('http://localhost:5000/addedjointable', {
-  //     method: "DELETE",
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(joinItem)
-  //  }).then((response) =>{
-  //         console.log("THE RESPONSE IS HERE",response);
-  //         if(response.ok){
-  //             //setaddItems(null);
-  //         console.log("A Delete Was Made ", response);
-  //          loadAddedJoinItems();
-  //         }
-  //     })
-  // }
+  const deleteAddedItem = (joinItem) => {
+      return fetch('http://localhost:5000/addedjointable', {
+      method: "DELETE",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(joinItem)
+   }).then((response) =>{
+          console.log("THE RESPONSE IS HERE",response);
+          if(response.ok){
+              //setaddItems(null);
+          console.log("A Delete Was Made ", response);
+           loadAddedJoinItems();
+          }
+      })
+  }
 
   let displayFav = (
     <ol>
@@ -70,7 +69,7 @@ const Checkout = () => {
       {addedJoinItems.map((item, index) => (
         <li key={index}>
           <h2>
-            {item.title} || ${item.price}{" "}
+            {item.title} || ${item.price}{" "} <button onClick={() => deleteAddedItem(item)}>delete</button>
           </h2>
         </li>
       ))}
@@ -79,24 +78,7 @@ const Checkout = () => {
 
   let subtotal = maxItems.map((number) => number.max * 100);
 
-  // let displayThankYou;
-  // if (selected != null) {
-  // 	displayThankyou = (
-  // 		<div>
-
-  // 		<h1>Thank you!!</h1>
-  // 		<br/>
-  // 		<br/>
-  // 		<button onClick={() => setSelected(null)}>Go back</button>
-
-  // 		</div>
-  // 		)
-  // } else {
-  // 	displayThankyou = (
-
-  //     )
-  // }
-
+  
   return (
     <div>
       <h1>Checkout</h1>
@@ -117,15 +99,15 @@ const Checkout = () => {
             }}
           >
             <div>
-              <h1>Items</h1>
-              <p>
-                {displayAddedItemName}
+              Items
+              
+                {displayAddedItemName} 
                 <br />
-              </p>
+              
               {/* lower left of this column 1 */}
               <hr></hr>
               <h1>Payment</h1>
-              <form onsubmit="submit_form()">
+              <form>
                 <h4>
                   {" "}
                   First Name
@@ -141,14 +123,14 @@ const Checkout = () => {
                   State{" "}
                 </h4>
                 <input type="text" placeholder="" />
-                <input type="submit" value="Submit" />
+                <input type="button" value="Submit" />
               </form>
             </div>
             {/* upper right side of this coulmn 1 */}
             <div>
               <div style={{ display: "flex" }}>
                 <hr></hr>
-                <h1>Favorites</h1>
+                Favorites
                 {displayFav}
               </div>
             </div>
@@ -160,12 +142,12 @@ const Checkout = () => {
           <div style={{ display: "flex" }}>
             <hr></hr>
             <p>
-              <h1>Subtotal</h1>${subtotal}.00
+              Subtotal: ${subtotal}.00
               <br />
-              <h2>Shipping</h2>
+              Shipping
               free
               <br />
-              <input type="submit" value="Purchase" />
+              
             </p>
           </div>
         </div>
@@ -174,4 +156,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default CheckoutDefault;
