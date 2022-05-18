@@ -70,12 +70,22 @@ const CheckoutDefault = () => {
         <li key={index}>
           <h2>
             {item.title} || ${item.price}{" "} <button onClick={() => deleteAddedItem(item)}>delete</button>
+            
           </h2>
         </li>
       ))}
     </ol>
   );
+  
+ 
+  // let subtotal = addedJoinItems.filter((items) => {
+  //   return items.price
+  // }).map((item, index) => {
+  //   item.reduce((a, b) => a + b, 0)
+  // });
 
+  // console.log("I'm HEEEEEREE", subtotal)
+  
   let subtotal = maxItems.map((number) => number.max * 100);
 
   

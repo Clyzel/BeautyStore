@@ -91,40 +91,6 @@ app.get("/addedjointable", cors(), async (req, res) => {
   }
 });
 
-//categorys on shop.js
-
-app.get("/categoryWomensClothing", cors(), async (req, res) => {
-  try {
-    const { rows: womensClothing } = await db.query(
-      "SELECT * FROM products WHERE category = 'womens clothing';"
-    );
-    res.send(womensClothing);
-  } catch (e) {
-    return res.status(400).json({ e });
-  }
-});
-
-app.get("/categoryJewelry", cors(), async (req, res) => {
-  try {
-    const { rows: jewelryItems } = await db.query(
-      "SELECT * FROM products WHERE category = 'jewelry';"
-    );
-    res.send(jewelryItems);
-  } catch (e) {
-    return res.status(400).json({ e });
-  }
-});
-
-app.get("/categoryBags", cors(), async (req, res) => {
-  try {
-    const { rows: bagItems } = await db.query(
-      "SELECT * FROM products WHERE category = 'bags';"
-    );
-    res.send(bagItems);
-  } catch (e) {
-    return res.status(400).json({ e });
-  }
-});
 
 app.post("/favitems", cors(), async (req, res) => {
   const newFav = { id: req.body.id };
@@ -165,7 +131,7 @@ app.delete("/additems", cors(), async (req, res) => {
  app.delete('/addedjointable', cors(), async (req, res) =>{
   const deleteId = req.body.product_id;
   console.log(req.body);
-  await db.query('DELETE FROM additems WHERE id=$1', [deleteId]);
+  await db.query('DELETE FROM additems WHERE product_id=$1', [deleteId]);
   res.status(200).end();
 
  });

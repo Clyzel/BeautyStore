@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import ClothingItems from "./clothingItems";
 import IndividualItem from "./individualitem";
 //import JewelryItems from "./jewelryItems";
 //import BagItems from "./bagItems";
@@ -27,34 +26,6 @@ const Shop = () => {
     loadProducts();
   }, []);
 
-  //This is where my shop page renders the default or the individualitem page
-//   let displayBlock;
-//   if (selected != null) {
-//     displayBlock = (
-//       <div>
-//         <IndividualItem product={selected} />
-//         <button onClick={() => setSelected(null)}>Go back</button>
-//       </div>
-//     );
-//   } else {
-//     displayBlock = (
-//       <div>
-//         <h2> List of Items </h2>
-//         <ul>
-//           {products.map((product, index) => (
-//             <img
-//               key={index}
-//               src={product.image}
-//               alt=""
-//               width="300"
-//               height="400"
-//               onClick={() => setSelected(product)}
-//             />
-//           ))}
-//         </ul>
-//       </div>
-//     );
-//   }
 
   // This is my guess of how to do an if else with the radio buttons
   let displayBlock;
