@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
 background: #f52091;
-height: 85px;
+border-bottom: 12px solid black;
+height: 105px;
 display: flex;
 justify-content: space-between;
 padding: 0.2rem calc((100vw - 1000px) / 2);
@@ -12,15 +13,25 @@ z-index: 12;
 `;
 
 export const NavLink = styled(Link)`
-color: #808080;
+color: #ffe23b;
+margin: 15px;
 display: flex;
+font-size: 40px;
+text-shadow: -1px 5px 3px #000,
+				  3px 5px 5px #000,
+				  2px -1px 0 #000,
+				  -1px -1px 0 #000;
+font-weight: bold;
 align-items: center;
+text-align: right;
 text-decoration: none;
-padding: 0 1rem;
+text-decoration-thickness: 500px;
+padding: 0 5rem;
 height: 100%;
 cursor: pointer;
 &.active {
-	color: #4d4dff;
+	color: #ff4dd3;
+	text-decoration: line-through;
 }
 `;
 

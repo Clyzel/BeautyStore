@@ -41,13 +41,14 @@ img {
 img:hover {
   border: 20px solid #f52091;
   box-shadow:
-    inset 60px 0 120px #f0f,  /* left magenta */
-    inset -60px 0 120px #ffe23b; /* right cyan */
-  /* box-shadow: 120px 80px 40px 20px #ffe23b */
-  /* 0 0 50px #ffe23b; */
+    inset 60px 0 120px #f0f,  
+    inset -60px 0 120px #ffe23b; 
   outline-offset: 15px;
+  
 
 }
+
+
 
 
 @keyframes App-logo-spin {

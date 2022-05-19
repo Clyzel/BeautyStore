@@ -81,7 +81,6 @@ let handleCategoryChange = (changeEvent) => {
           <input
             ref={clothesId}
             onChange={handleCategoryChange}
-            aria-checked=""
             type="radio"
             value="womens clothing"
 			checked={selectedCategory === 'womens clothing'}
@@ -90,7 +89,6 @@ let handleCategoryChange = (changeEvent) => {
           <input
             ref={jewelryId}
             onChange={handleCategoryChange}
-            aria-checked=""
             type="radio"
             value="jewelry"
 			checked={selectedCategory === 'jewelry'}
@@ -99,7 +97,6 @@ let handleCategoryChange = (changeEvent) => {
           <input
             ref={bagsId}
             onChange={handleCategoryChange}
-            aria-checked=""
             type="radio"
             value="bags"
 			checked={selectedCategory === 'bags'}
@@ -107,7 +104,6 @@ let handleCategoryChange = (changeEvent) => {
 		  all
 		  <input
             onChange={handleCategoryChange}
-            aria-checked=""
             type="radio"
             value="all"
 			checked={selectedCategory === 'all'}

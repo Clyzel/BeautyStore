@@ -6,16 +6,16 @@ return (
 	<>
 	<Nav>
 		<NavMenu>
-		<NavLink to="/home" activeStyle>
-			Home
+		<NavLink to="/home"  activeStyle>
+			<div className="page">Home</div>
 		</NavLink>
-		<NavLink to="/shop" activeStyle>
+		<NavLink to="/shop" className="page" activeStyle>
 			Shop
 		</NavLink>
-		<NavLink to="/checkout" activeStyle>
+		<NavLink to="/checkout" className="page" activeStyle>
 			Checkout
 		</NavLink>
-		<NavLink to="/about" activeStyle>
+		<NavLink to="/about" className="page" activeStyle>
 			About
 		</NavLink>
 		</NavMenu>
