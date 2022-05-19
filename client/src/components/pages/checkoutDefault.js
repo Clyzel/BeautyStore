@@ -65,16 +65,22 @@ const CheckoutDefault = () => {
   );
 
   let displayAddedItemName = (
-    <ol>
+    <ul>
       {addedJoinItems.map((item, index) => (
         <li key={index}>
           <h2>
-            {item.title} || ${item.price}{" "} <button onClick={() => deleteAddedItem(item)}>delete</button>
+          <img
+            src={item.image}
+            alt=""
+            width="100"
+            height="100"
+          />
+          {item.title} || ${item.price}{" "} <button onClick={() => deleteAddedItem(item)}>delete</button>
             
           </h2>
         </li>
       ))}
-    </ol>
+    </ul>
   );
   
  
@@ -90,7 +96,7 @@ const CheckoutDefault = () => {
 
   
   return (
-    <div>
+    <div className="pogebody">
       <h1>Checkout</h1>
       {/* column 1 & (a column in a column) */}
       <div

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import IndividualItem from "./individualitem";
-
+import banner2 from "./banner2.png";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -31,6 +31,7 @@ const Home = () => {
       <ul>
         {products.map((product, index) => (
           <img
+			className="image"
             key={index}
             src={product.image}
             alt=""
@@ -58,11 +59,12 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <h1>Home</h1>
-
+	<div>
+		<h1> <img src={banner2} className="banner2" alt=""/> </h1>
+    <div className="pogebody">
       {displayBlock}
     </div>
+	</div>
   );
 };
 

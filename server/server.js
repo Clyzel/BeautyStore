@@ -83,7 +83,7 @@ app.get("/favejointable", cors(), async (req, res) => {
 app.get("/addedjointable", cors(), async (req, res) => {
   try {
     const { rows: addedItems } = await db.query(
-      "SELECT product_id, title, price FROM products JOIN additems ON products.id = additems.product_id;"
+      "SELECT product_id, title, price, image FROM products JOIN additems ON products.id = additems.product_id;"
     );
     res.send(addedItems);
   } catch (e) {

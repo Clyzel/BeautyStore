@@ -5,28 +5,31 @@ import styled from "styled-components";
 export const Nav = styled.nav`
 background: #f52091;
 border-bottom: 12px solid black;
+font-family: 'Chicle', cursive;
+letter-spacing: 3px;
 height: 105px;
+width: auto;
 display: flex;
 justify-content: space-between;
-padding: 0.2rem calc((100vw - 1000px) / 2);
-z-index: 12;
+padding: -90rem calc((100vw - 1000px) / 2);
+z-index: 10;
 `;
 
 export const NavLink = styled(Link)`
 color: #ffe23b;
-margin: 15px;
+//margin: 15px;
 display: flex;
-font-size: 40px;
-text-shadow: -1px 5px 3px #000,
-				  3px 5px 5px #000,
-				  2px -1px 0 #000,
+font-size: 60px;
+text-shadow: -1px 5px 8px #000,
+				  3px 5px 5px #d120f5,
+				  1px -2px 0 #20f5c7,
 				  -1px -1px 0 #000;
 font-weight: bold;
 align-items: center;
 text-align: right;
 text-decoration: none;
 text-decoration-thickness: 500px;
-padding: 0 5rem;
+padding: 4rem;
 height: 100%;
 cursor: pointer;
 &.active {

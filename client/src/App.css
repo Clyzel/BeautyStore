@@ -32,24 +32,38 @@ body {
   background-color: #f5f6f6;
 }
 
-img {
+.image {
   border: 20px solid #ffe23b;
   outline: 10px solid black;
   margin: 25px;
 }
 
-img:hover {
+.image:hover {
   border: 20px solid #f52091;
   box-shadow:
     inset 60px 0 120px #f0f,  
     inset -60px 0 120px #ffe23b; 
   outline-offset: 15px;
-  
 
 }
 
+.Logo{
+  float: left;
+  width: 160px;
+  height: 105px;
+  padding: -5px;
+}
+
+.pogebody{
+  margin: 150px;
+}
 
 
+.banner2{
+  height: 350px;
+  width: 1400px;
+  margin: 105px;
+}
 
 @keyframes App-logo-spin {
   from {

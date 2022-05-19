@@ -119,7 +119,7 @@ const IndividualItem = (props) => {
     );
   }
   return (
-    <div
+    <div className="pogebody"
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
@@ -128,7 +128,7 @@ const IndividualItem = (props) => {
     >
       <div>
         <h1>{product.title} </h1>
-        <img src={product.image} alt="" width="500" height="600"></img>
+        <img src={product.image} className="image" alt="" width="500" height="600"></img>
       </div>
 
       <div>

@@ -2,10 +2,12 @@ import React from "react";
 
 const About = () => {
 return (
-	<div>
+	<div className="pogebody">
 	<h1>
 		About
+
 	</h1>
+	
 	</div>
 );
 };

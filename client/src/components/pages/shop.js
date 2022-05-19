@@ -50,6 +50,7 @@ const Shop = () => {
 
 		  }).map((product, index) => (
             <img
+			  className="image"
               key={index}
               src={product.image}
               alt=""
@@ -73,7 +74,7 @@ let handleCategoryChange = (changeEvent) => {
 
   return (
     // Bellow are my radio buttons
-    <div>
+    <div className="pogebody">
       <div className="myDivContainer">
         <div className="column">
 		<form>

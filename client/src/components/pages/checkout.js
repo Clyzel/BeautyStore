@@ -34,7 +34,7 @@ const Checkout = () => {
   }
 
   return (
-    <div>
+    <div className="pogebody">
       
     {displayThankYou}
     
