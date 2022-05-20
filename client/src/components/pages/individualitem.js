@@ -60,7 +60,7 @@ const IndividualItem = (props) => {
     addItemButton = (
       <div>
         <button
-          style={{ color: "red" }}
+          style={{ backgroundColor: "yellow" }}
           onClick={() => {
             deleteAddedItem(currentlyAdded);
           }}
@@ -74,7 +74,7 @@ const IndividualItem = (props) => {
     addItemButton = (
       <div>
         <button
-          style={{ color: "blue" }}
+          style={{ backgroundColor: "#20f5c7" }}
           onClick={() => {
             postAddItems(product);
           }}
@@ -96,7 +96,7 @@ const IndividualItem = (props) => {
       <div>
         <a href="http://localhost:3000/checkout/">
           {" "}
-          <button style={{ color: "blue" }}>Buy Now</button>{" "}
+          <button style={{ backgroundColor: "#f0f"}}>Buy Now</button>{" "}
         </a>
       </div>
     );
@@ -105,15 +105,14 @@ const IndividualItem = (props) => {
     buyNowButton = (
       <div>
         <a href="http://localhost:3000/checkout/">
-          {" "}
           <button
-            style={{ color: "red" }}
+            style={{ backgroundColor: "#f0f" }}
             onClick={() => {
               postAddItems(product);
             }}
           >
             Buy Now
-          </button>{" "}
+          </button>
         </a>
       </div>
     );
@@ -127,14 +126,15 @@ const IndividualItem = (props) => {
       }}
     >
       <div>
-        <h1>{product.title} </h1>
+        <h3>{product.title} </h3>
         <img src={product.image} className="image" alt="" width="500" height="600"></img>
       </div>
 
       <div>
-        <FavoriteItem product={product} />
         <b>Description:</b> {product.description}
-        <br />
+        <br/>
+        <br/>
+        <FavoriteItem product={product} />
         <br />
         <b>Category:</b> {product.category}
         <br />

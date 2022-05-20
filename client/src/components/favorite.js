@@ -67,7 +67,7 @@ const FavoriteItem = (props) => {
     displayHeart = (
       <div>
         <FaHeart
-          style={{ color: "red" }}
+          style={{ color: "pink" }}
           onClick={() => {
             deleteFav(currentlyFav);
           }}

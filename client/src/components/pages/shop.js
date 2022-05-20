@@ -33,13 +33,12 @@ const Shop = () => {
     displayBlock = (
       <div>
         <IndividualItem product={selected} />
-        <button onClick={() => setSelected(null)}>Go back</button>
+        <button style={{ backgroundColor: "yellow"}} onClick={() => setSelected(null)}>Go back</button>
       </div>
     ); 
   } else {
     displayBlock = (
       <div>
-        <h2> List of Items </h2>
         <ul>
           {products.filter((product) => {
 			  if (selectedCategory === "all"){
@@ -77,44 +76,50 @@ let handleCategoryChange = (changeEvent) => {
     <div className="pogebody">
       <div className="myDivContainer">
         <div className="column">
-		<form>
-			womens clothing
+          <div>
+		<form className="ayye">
           <input
             ref={clothesId}
             onChange={handleCategoryChange}
             type="radio"
             value="womens clothing"
 			checked={selectedCategory === 'womens clothing'}
-          />
-		  jewelry
+          /> <b>Clothing</b>
+          <br/>
+          <br/>
           <input
             ref={jewelryId}
             onChange={handleCategoryChange}
             type="radio"
             value="jewelry"
 			checked={selectedCategory === 'jewelry'}
-          />
-		  bags
+          /> <b>Jewelry</b>
+          <br/>
+          <br/>
           <input
             ref={bagsId}
             onChange={handleCategoryChange}
             type="radio"
             value="bags"
 			checked={selectedCategory === 'bags'}
-          />
-		  all
+          /> <b>Bags</b>
+          <br/>
+          <br/>
 		  <input
             onChange={handleCategoryChange}
             type="radio"
             value="all"
 			checked={selectedCategory === 'all'}
-          />
+          /> <b>All</b>
 		</form>
+    </div>
         </div>
 
         <div className="column">
-          <h1>Shop</h1>
+          <div className="shopstuff">
+          <h1> The Shop 💕 </h1>
           {displayBlock}
+          </div>
         </div>
       </div>
     </div>

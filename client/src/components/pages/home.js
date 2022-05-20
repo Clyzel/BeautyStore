@@ -26,7 +26,7 @@ const Home = () => {
 
   let displayThree;
   displayThree = (
-    <div>
+    <div className="featured">
       <h2> Featured </h2>
       <ul>
         {products.map((product, index) => (
@@ -60,9 +60,11 @@ const Home = () => {
 
   return (
 	<div>
-		<h1> <img src={banner2} className="banner2" alt=""/> </h1>
-    <div className="pogebody">
+		
+    <div className="pogebody2">
+    <img src={banner2} className="banner2" alt=""/>
       {displayBlock}
+      
     </div>
 	</div>
   );

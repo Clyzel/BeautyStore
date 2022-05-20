@@ -30,6 +30,8 @@
 
 body {
   background-color: #f5f6f6;
+  font-size: xx-large;
+  
 }
 
 .image {
@@ -85,11 +87,17 @@ body {
   margin: 150px;
 }
 
+.pogebody2{
+  margin: 150px;
+  margin-top: -20px;
+}
+
 
 .banner2{
   height: 350px;
-  width: 1400px;
-  margin: 105px;
+  width: 1200px;
+  margin: 100px;
+  
 }
 
 
@@ -118,6 +126,11 @@ body {
   grid-template-columns: 1fr 1fr;
   
 }
+
+.shopstuff{
+  margin-left: 100px;
+  
+}
  
 .subtotal{
   margin-left: 50px;
@@ -132,8 +145,20 @@ body {
   
 }
 
+.ayye{
+  padding-top: 350px;
+}
+
+.ayye:hover{
+  color: #f0f;
+}
+
 .favorites{
   margin-left: 50px;
+}
+
+.featured{
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
