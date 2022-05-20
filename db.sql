@@ -147,6 +147,7 @@ COPY public.additems (id, product_id, user_id) FROM stdin;
 --
 
 COPY public.favitems (id, users_id, products_id) FROM stdin;
+39	\N	1
 \.
 
 
@@ -192,7 +193,7 @@ SELECT pg_catalog.setval('public.additems_id_seq', 6, true);
 -- Name: favitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl_1121_6
 --
 
-SELECT pg_catalog.setval('public.favitems_id_seq', 38, true);
+SELECT pg_catalog.setval('public.favitems_id_seq', 39, true);
 
 
 --

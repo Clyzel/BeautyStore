@@ -10,8 +10,7 @@ const CheckoutDefault = () => {
     lastname: "",
     address: "",
     state:"",
-    zip: "",
-    nameoncard: ""
+    zip: ""
 });
 
   const loadFavJoinItems = () => {
@@ -114,15 +113,10 @@ const handleZip = (event) => {
   setSearchString((searchString) => ({ ...searchString, zip }));
 }
 
-const handlenameoncard = (event) => {
-  const nameoncard = event.target.value;
-  setSearchString((searchString) => ({ ...searchString, nameoncard }));
-}
-
   let subtotal = maxItems.map((number) => number.max * 100);
 
   return (
-    <div className="pogebody">
+    <div className="pogebody" id="checkoutpage1">
       <div class="bigColumn">
         <div class="column">
           {/* This are the two colums of bigColumn 1 */}
@@ -142,17 +136,18 @@ const handlenameoncard = (event) => {
           <hr></hr>
           <h1>Payment</h1>
           <div>
-            <form>
+            <form className="checkoutform">
               <fieldset>
-                <label>First Name</label>
+                First Name
                 <input
                   type="text"
+                  id="lastname"
                   value={searchString.firstname}
                   onChange={handlefirstname}
 
                 />
-                <br />
-                <label>Last Name</label>
+                <br/>
+                Last Name
                 <input
                   type="text"
                   id="lastname"
@@ -162,44 +157,34 @@ const handlenameoncard = (event) => {
                   onChange={handlelastname}
                 />
                 <br />
-                <label>Address</label>
+                Address
                 <input
                   type="text"
-                  id="address"
+                  id="input"
                   placeholder=""
                   required
                   value={searchString.address}
                   onChange={handleadress}
                 />
-                <br />
-                <label>State</label>
+                <br/>
+                State
                 <input
                   type="text"
-                  id="add-user-lastname"
+                  id="state"
                   placeholder=""
                   required
                   value={searchString.state}
                   onChange={handlestate}
                 />
-                <br />
-                <label>ZIP</label>
+                <br/>
+                zip
                 <input
                   type="text"
-                  id="add-user-lastname"
+                  id="zip"
                   placeholder=""
                   required
                   value={searchString.zip}
                   onChange={handleZip}
-                />
-                <br />
-                <label>Name On Card</label>
-                <input
-                  type="text"
-                  id="add-user-lastname"
-                  placeholder=""
-                  required
-                  value={searchString.nameoncard}
-                  onChange={handlenameoncard}
                 />
                 <br />
                 <br />
@@ -214,9 +199,11 @@ const handlenameoncard = (event) => {
         <div class="column">
           <div className="subtotal">
             <h1>Total:</h1>
-            Shipping free
+            <h3 style={{color: "red"}}>Shipping free</h3>
             <br />
-            <br />${subtotal}.00
+            <br />
+            <hr></hr>
+            ${subtotal}.00
             <br />
             <br />
           </div>
