@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Form = (props) => {
+const Form = () => {
     // Initial student in case that you want to update a new student
     const {initialStudent = {id: null, 
                             firstname: "", 

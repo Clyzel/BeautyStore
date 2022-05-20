@@ -65,6 +65,49 @@ body {
   margin: 105px;
 }
 
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 10px solid #ffe23b;
+  outline: 10px solid black;
+}
+
+.items {
+  margin-left: 15px;
+
+}
+.row:hover {
+  border: 20px solid #f52091;
+  box-shadow:
+    inset 60px 0 120px #f0f,  
+    inset -60px 0 120px #ffe23b; 
+  outline-offset: 15px;
+
+}
+
+.bigColumn{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+}
+ 
+.subtotal{
+  margin-left: 50px;
+  border: 10px solid #ffe23b;
+  outline: 10px solid black;
+}
+
+.purchase{
+  margin-left: 900px;
+  margin-top: -100px;
+  
+}
+
+.favorites{
+  margin-left: 50px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

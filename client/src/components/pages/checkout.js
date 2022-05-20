@@ -27,16 +27,15 @@ const Checkout = () => {
     
   	displayThankYou = ( 
       <div>
-      <CheckoutDefault/>
-      <button onClick={() => setSelected(true)}>purchase</button>
+      <CheckoutDefault />
+      <button className="purchase" onClick={() => setSelected(true)}>purchase</button>
       </div>
     )
   }
 
   return (
     <div className="pogebody">
-      
-    {displayThankYou}
+    {displayThankYou} 
     
 
     </div>
