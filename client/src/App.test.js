@@ -13,27 +13,27 @@ describe("App", () => {
   });
 });
 
-describe("Form", () => {
+describe("here", () => {
   test("render the Form component", () => {
-    render(<Form />);
+    render(< component/>);
   });
 });
 
-describe("DallasPostList", () => {
+describe("here2", () => {
   test("render the Form component", () => {
-    render(<DallasPostList />);
+    render(< component/>);
   });
 });
 
-test("renders login Button", () => {
-  render(<Login />);
+test("renders Button", () => {
+  render(< component/>);
   screen.getByRole("button", {
-    name: /Login/
+    name: /here /
   });
 });
 
 describe("Nav", () => {
   test("render the Form component", () => {
-    render(<Nav />);
+    render(<component />);
   });
 });
