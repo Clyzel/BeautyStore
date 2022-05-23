@@ -7,10 +7,10 @@ return (
 	
 	<Nav>
 		<NavMenu>
-		<NavLink to="/home"  activeStyle>
+		<NavLink to="/"  activeStyle>
 			<div><img src={wow} alt="" className="Logo"/></div>
 		</NavLink>
-		<NavLink to="/home"  activeStyle>
+		<NavLink to="/"  activeStyle>
 			<div className="page"> Home</div>
 		</NavLink>
 		<NavLink to="/shop" className="page" activeStyle>
